@@ -1,0 +1,66 @@
+version: '2'
+services:
+  nginx:
+    image: oliverlundquist/nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/app/current
+    networks:
+      - php-app
+  php:
+    image: oliverlundquist/php7:latest
+    environment:
+      DB_HOST: mysql
+      DB_DATABASE: kurashicom_platform
+      DB_USERNAME: root
+      DB_PASSWORD: root
+    volumes:
+      - .:/var/app/current
+    networks:
+      - php-app
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: kurashicom_platform
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./storage/mysql:/var/lib/mysql
+    networks:
+      - php-app
+  nginx-xdebug:
+    image: oliverlundquist/nginx:latest
+    environment:
+      FASTCGI_PASS_HOST: php-xdebug
+      FASTCGI_PASS_PORT: 9000
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/app/current
+    networks:
+      - php-app
+  php-xdebug:
+    image: oliverlundquist/php7-xdebug:latest
+    environment:
+      DB_HOST: mysql
+      DB_DATABASE: kurashicom_platform
+      DB_USERNAME: root
+      DB_PASSWORD: root
+      XDEBUG_HOST: ${XDEBUG_HOST}
+    volumes:
+      - .:/var/app/current
+    networks:
+      - php-app
+  php-webgrind:
+    image: oliverlundquist/php7-webgrind:latest
+    ports:
+      - "9100:9000"
+    volumes:
+      - .:/var/app/current
+    networks:
+      - php-app
+networks:
+  php-app:
+    driver: bridge
