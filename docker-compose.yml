@@ -12,7 +12,7 @@ services:
     image: oliverlundquist/php7:latest
     environment:
       DB_HOST: mysql
-      DB_DATABASE: kurashicom_platform
+      DB_DATABASE: kunitachi_lunch
       DB_USERNAME: root
       DB_PASSWORD: root
     volumes:
@@ -23,7 +23,7 @@ services:
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: kurashicom_platform
+      MYSQL_DATABASE: kunitachi_lunch
     ports:
       - "3306:3306"
     volumes:
@@ -45,7 +45,7 @@ services:
     image: oliverlundquist/php7-xdebug:latest
     environment:
       DB_HOST: mysql
-      DB_DATABASE: kurashicom_platform
+      DB_DATABASE: kunitachi_lunch
       DB_USERNAME: root
       DB_PASSWORD: root
       XDEBUG_HOST: ${XDEBUG_HOST}
