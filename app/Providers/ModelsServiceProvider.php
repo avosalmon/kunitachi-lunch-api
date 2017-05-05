@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\Stores\Stores;
+use App\Models\Stores\StoresEloquent;
 
-class AppServiceProvider extends ServiceProvider
+class ModelsServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
@@ -23,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->register('App\Providers\ModelsServiceProvider');
+        $this->app->bind('App\Models\Stores\Stores', function () {
+            return new Stores(
+                new StoresEloquent
+            );
+        });
     }
 }
