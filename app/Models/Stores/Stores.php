@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Models\Stores;
+namespace App\Models\Stores;
 
-use App\Http\Models\ModelMetaProperties;
+use App\Models\ModelMetaProperties;
 
 class Stores
 {
@@ -11,7 +11,7 @@ class Stores
     /**
      * StoresEloquent instance.
      *
-     * @var App\Http\Models\Stores\StoresEloquent
+     * @var App\Models\Stores\StoresEloquent
      */
     protected $stores;
 
@@ -53,11 +53,11 @@ class Stores
     /**
      * Create new instances for dependencies.
      *
-     * @param App\Http\Models\Stores\StoresEloquent $stores
+     * @param App\Models\Stores\StoresEloquent $stores
      * @param array $relationships
      *
      */
-    public function __construct(StoresEloquent $stores, array $relationships)
+    public function __construct(StoresEloquent $stores, array $relationships = [])
     {
         $this->stores        = $stores;
         $this->relationships = $relationships;

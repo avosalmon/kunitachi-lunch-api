@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Routing\ResponseFactory;
-use App\Http\Models\Stores\Stores;
+use App\Models\Stores\Stores;
 
 class StoresController extends Controller
 {
@@ -25,7 +25,7 @@ class StoresController extends Controller
     /**
      * Stores model instance.
      *
-     * @var App\Http\Models\Stores\Stores
+     * @var App\Models\Stores\Stores
      */
     protected $stores;
 
@@ -34,7 +34,7 @@ class StoresController extends Controller
      *
      * @param Illuminate\Http\Request $request
      * @param Illuminate\Contracts\Routing\ResponseFactory;
-     * @param App\Http\Models\Stores\Stores $stores
+     * @param App\Models\Stores\Stores $stores
      * @return void
      */
     public function __construct(Request $request, ResponseFactory $response, Stores $stores)
