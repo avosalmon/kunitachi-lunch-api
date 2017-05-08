@@ -19,18 +19,11 @@ class HandleCors
     {
         $response = $next($request);
 
-        // Allow any origins and methods for development environment
-        // because we send requests from http://localhost during development.
-        if (getenv('APP_ENV') === 'development') {
-
-            return $response->withHeaders([
-                        'Access-Control-Allow-Origin'      => '*',
-                        'Access-Control-Allow-Methods'     => 'GET, POST, PUT, DELETE, OPTIONS',
-                        'Access-Control-Allow-Headers'     => 'Origin, Content-Type, Accept, Authorization, X-Request-With, X-XSRF-TOKEN',
-                        'Access-Control-Allow-Credentials' => 'true'
-                    ]);
-        }
-
-        return $response;
+        return $response->withHeaders([
+                    'Access-Control-Allow-Origin'      => '*',
+                    'Access-Control-Allow-Methods'     => 'GET, POST, PUT, DELETE, OPTIONS',
+                    'Access-Control-Allow-Headers'     => 'Origin, Content-Type, Accept, Authorization, X-Request-With, X-XSRF-TOKEN',
+                    'Access-Control-Allow-Credentials' => 'true'
+                ]);
     }
 }
