@@ -94,7 +94,15 @@ class StoresController extends Controller
      */
     public function show($id)
     {
+        $this->stores->setOffset(0);
+        $this->stores->setLimit(1);
 
+        if ($store = $this->stores->find($id)) {
+            $meta = $this->generateResponseMeta($this->stores, $total = 1);
+            return $this->response->json($this->formatResponse($type = 'store', $store, $meta));
+        }
+
+        return $this->response->json($data = [], 404);
     }
 
     /**
