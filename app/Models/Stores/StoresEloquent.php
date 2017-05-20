@@ -20,6 +20,6 @@ class StoresEloquent extends Model
      */
     public function tags()
     {
-        return $this->belongsToMany('App\Models\Tags\TagsEloquent', 'store_tags', 'store_id', 'tag_id')->withTimestamps();
+        return $this->belongsToMany('App\Models\Tags\TagsEloquent', 'store_tags', 'store_id', 'tag_id')->orderBy('display_order', 'asc')->withTimestamps();
     }
 }
