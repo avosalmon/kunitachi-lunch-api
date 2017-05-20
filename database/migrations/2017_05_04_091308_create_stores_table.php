@@ -18,7 +18,12 @@ class CreateStoresTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('link_url')->nullable();
             $table->string('image_url')->nullable();
+            $table->string('closed_day')->nullable();
+            $table->time('opened_at')->nullable();
+            $table->time('closed_at')->nullable();
             $table->timestamps();
         });
     }
