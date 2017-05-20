@@ -72,7 +72,20 @@ class StoresController extends Controller
      */
     public function with($relationships)
     {
+        $relationships = explode(',', $relationships);
 
+        $this->stores->setOffset((int)$this->request->input('offset'));
+        $this->stores->setLimit((int)$this->request->input('limit'));
+        $this->stores->setSort($this->request->input('sort'));
+        $this->stores->setDirection($this->request->input('direction'));
+
+        if ($stores = $this->stores->allWith($relationships)) {
+            $total = $this->stores->count();
+            $meta  = $this->generateResponseMeta($this->stores, $total);
+            return $this->response->json($this->formatResponse($type = 'stores', $stores, $meta));
+        }
+
+        return $this->response->json($data = [], 400);
     }
 
     /**

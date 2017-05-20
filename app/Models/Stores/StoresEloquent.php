@@ -12,4 +12,14 @@ class StoresEloquent extends Model
      * @var string
      */
     protected $table = 'stores';
+
+    /**
+     * Get tags which are related to this product.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Tags\TagsEloquent', 'store_tags', 'store_id', 'tag_id')->withTimestamps();
+    }
 }
