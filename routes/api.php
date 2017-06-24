@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::group(['prefix' => 'stores'], function () {
+Route::group(['prefix' => 'shops'], function () {
     Route::get('/',                     'StoresController@index');
     Route::post('/',                    'StoresController@store');
     Route::get('/{id}',                 'StoresController@show');

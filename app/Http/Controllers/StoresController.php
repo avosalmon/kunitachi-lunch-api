@@ -60,7 +60,7 @@ class StoresController extends Controller
         $total  = $this->stores->count();
         $meta   = $this->generateResponseMeta($this->stores, $total);
 
-        return $this->response->json($this->formatResponse($type = 'stores', $stores, $meta));
+        return $this->response->json($this->formatResponse($type = 'shops', $stores, $meta));
     }
 
     /**
@@ -82,7 +82,7 @@ class StoresController extends Controller
         if ($stores = $this->stores->allWith($relationships)) {
             $total = $this->stores->count();
             $meta  = $this->generateResponseMeta($this->stores, $total);
-            return $this->response->json($this->formatResponse($type = 'stores', $stores, $meta));
+            return $this->response->json($this->formatResponse($type = 'shops', $stores, $meta));
         }
 
         return $this->response->json($data = [], 400);
@@ -112,7 +112,7 @@ class StoresController extends Controller
 
         if ($store = $this->stores->find($id)) {
             $meta = $this->generateResponseMeta($this->stores, $total = 1);
-            return $this->response->json($this->formatResponse($type = 'store', $store, $meta));
+            return $this->response->json($this->formatResponse($type = 'shop', $store, $meta));
         }
 
         return $this->response->json($data = [], 404);
