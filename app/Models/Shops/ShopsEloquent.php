@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Models\Stores;
+namespace App\Models\Shops;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StoresEloquent extends Model
+class ShopsEloquent extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'stores';
+    protected $table = 'shops';
 
     /**
      * Get tags which are related to this product.
@@ -20,7 +20,7 @@ class StoresEloquent extends Model
      */
     public function tags()
     {
-        return $this->belongsToMany('App\Models\Tags\TagsEloquent', 'store_tags', 'store_id', 'tag_id')->orderBy('display_order', 'asc')->withTimestamps();
+        return $this->belongsToMany('App\Models\Tags\TagsEloquent', 'shop_tags', 'shop_id', 'tag_id')->orderBy('display_order', 'asc')->withTimestamps();
     }
 
     /**
@@ -30,6 +30,6 @@ class StoresEloquent extends Model
      */
     public function images()
     {
-        return $this->belongsToMany('App\Models\Images\ImagesEloquent', 'store_images', 'store_id', 'image_id')->withTimestamps();
+        return $this->belongsToMany('App\Models\Images\ImagesEloquent', 'shop_images', 'shop_id', 'image_id')->withTimestamps();
     }
 }

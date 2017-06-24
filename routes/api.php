@@ -18,10 +18,10 @@ use Illuminate\Http\Request;
 // });
 
 Route::group(['prefix' => 'shops'], function () {
-    Route::get('/',                     'StoresController@index');
-    Route::post('/',                    'StoresController@store');
-    Route::get('/{id}',                 'StoresController@show');
-    Route::put('/{id}',                 'StoresController@update');
-    Route::delete('/{id}',              'StoresController@destroy');
-    Route::get('/with/{relationships}', 'StoresController@with');
+    Route::get('/',                     'ShopsController@index');
+    Route::post('/',                    'ShopsController@store');
+    Route::get('/{id}',                 'ShopsController@show');
+    Route::put('/{id}',                 'ShopsController@update');
+    Route::delete('/{id}',              'ShopsController@destroy');
+    Route::get('/with/{relationships}', 'ShopsController@with');
 });

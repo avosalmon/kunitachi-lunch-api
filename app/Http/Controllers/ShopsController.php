@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Routing\ResponseFactory;
-use App\Models\Stores\Stores;
+use App\Models\Shops\Shops;
 
-class StoresController extends Controller
+class ShopsController extends Controller
 {
     /**
      * Request class instance.
@@ -23,25 +23,25 @@ class StoresController extends Controller
     protected $response;
 
     /**
-     * Stores model instance.
+     * Shops model instance.
      *
-     * @var App\Models\Stores\Stores
+     * @var App\Models\Shops\Shops
      */
-    protected $stores;
+    protected $shops;
 
     /**
      * Create new instances for dependencies.
      *
      * @param Illuminate\Http\Request $request
      * @param Illuminate\Contracts\Routing\ResponseFactory;
-     * @param App\Models\Stores\Stores $stores
+     * @param App\Models\Shops\Shops $shops
      * @return void
      */
-    public function __construct(Request $request, ResponseFactory $response, Stores $stores)
+    public function __construct(Request $request, ResponseFactory $response, Shops $shops)
     {
         $this->request  = $request;
         $this->response = $response;
-        $this->stores   = $stores;
+        $this->shops    = $shops;
     }
 
     /**
@@ -51,16 +51,16 @@ class StoresController extends Controller
      */
     public function index()
     {
-        $this->stores->setOffset((int)$this->request->input('offset'));
-        $this->stores->setLimit((int)$this->request->input('limit'));
-        $this->stores->setSort($this->request->input('sort'));
-        $this->stores->setDirection($this->request->input('direction'));
+        $this->shops->setOffset((int)$this->request->input('offset'));
+        $this->shops->setLimit((int)$this->request->input('limit'));
+        $this->shops->setSort($this->request->input('sort'));
+        $this->shops->setDirection($this->request->input('direction'));
 
-        $stores = $this->stores->all();
-        $total  = $this->stores->count();
-        $meta   = $this->generateResponseMeta($this->stores, $total);
+        $shops = $this->shops->all();
+        $total = $this->shops->count();
+        $meta  = $this->generateResponseMeta($this->shops, $total);
 
-        return $this->response->json($this->formatResponse($type = 'shops', $stores, $meta));
+        return $this->response->json($this->formatResponse($type = 'shops', $shops, $meta));
     }
 
     /**
@@ -74,22 +74,22 @@ class StoresController extends Controller
     {
         $relationships = explode(',', $relationships);
 
-        $this->stores->setOffset((int)$this->request->input('offset'));
-        $this->stores->setLimit((int)$this->request->input('limit'));
-        $this->stores->setSort($this->request->input('sort'));
-        $this->stores->setDirection($this->request->input('direction'));
+        $this->shops->setOffset((int)$this->request->input('offset'));
+        $this->shops->setLimit((int)$this->request->input('limit'));
+        $this->shops->setSort($this->request->input('sort'));
+        $this->shops->setDirection($this->request->input('direction'));
 
-        if ($stores = $this->stores->allWith($relationships)) {
-            $total = $this->stores->count();
-            $meta  = $this->generateResponseMeta($this->stores, $total);
-            return $this->response->json($this->formatResponse($type = 'shops', $stores, $meta));
+        if ($shops = $this->shops->allWith($relationships)) {
+            $total = $this->shops->count();
+            $meta  = $this->generateResponseMeta($this->shops, $total);
+            return $this->response->json($this->formatResponse($type = 'shops', $shops, $meta));
         }
 
         return $this->response->json($data = [], 400);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Shop a newly created resource in storage.
      *
      * @return Response
      */
@@ -107,11 +107,11 @@ class StoresController extends Controller
      */
     public function show($id)
     {
-        $this->stores->setOffset(0);
-        $this->stores->setLimit(1);
+        $this->shops->setOffset(0);
+        $this->shops->setLimit(1);
 
-        if ($store = $this->stores->find($id)) {
-            $meta = $this->generateResponseMeta($this->stores, $total = 1);
+        if ($store = $this->shops->find($id)) {
+            $meta = $this->generateResponseMeta($this->shops, $total = 1);
             return $this->response->json($this->formatResponse($type = 'shop', $store, $meta));
         }
 

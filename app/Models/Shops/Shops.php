@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Models\Stores;
+namespace App\Models\Shops;
 
 use App\Models\ModelMetaProperties;
 
-class Stores
+class Shops
 {
     use ModelMetaProperties;
 
     /**
-     * StoresEloquent instance.
+     * ShopsEloquent instance.
      *
-     * @var App\Models\Stores\StoresEloquent
+     * @var App\Models\Shops\ShopsEloquent
      */
-    protected $stores;
+    protected $shops;
 
     /**
      * Array of related relationship models.
@@ -53,24 +53,24 @@ class Stores
     /**
      * Create new instances for dependencies.
      *
-     * @param App\Models\Stores\StoresEloquent $stores
+     * @param App\Models\Shops\ShopsEloquent $shops
      * @param array $relationships
      *
      */
-    public function __construct(StoresEloquent $stores, array $relationships = [])
+    public function __construct(ShopsEloquent $shops, array $relationships = [])
     {
-        $this->stores        = $stores;
+        $this->shops         = $shops;
         $this->relationships = $relationships;
     }
 
     /**
-     * Get all stores
+     * Get all shops
      *
      * @return \Illuminate\Database\Eloquent\Model|Collection|static
      */
     public function all()
     {
-        return $this->stores
+        return $this->shops
                     ->skip($this->offset)
                     ->take($this->limit)
                     ->orderBy($this->sort, $this->direction)
@@ -84,11 +84,11 @@ class Stores
      */
     public function count()
     {
-        return $this->stores->count();
+        return $this->shops->count();
     }
 
     /**
-     * Get all stores with nested relationships
+     * Get all shops with nested relationships
      *
      * @param  array $relationships
      * @return \Illuminate\Database\Eloquent\Model|Collection|static
@@ -99,7 +99,7 @@ class Stores
             return null;
         }
 
-        return $this->stores
+        return $this->shops
                     ->with($relationships)
                     ->skip($this->offset)
                     ->take($this->limit)
@@ -117,10 +117,10 @@ class Stores
     public function find($id, $throw = false)
     {
         if ($throw) {
-            return $this->stores->findOrFail($id);
+            return $this->shops->findOrFail($id);
         }
 
-        return $this->stores->find($id);
+        return $this->shops->find($id);
     }
 
     /**
@@ -133,10 +133,10 @@ class Stores
     public function findBy($where, $throw = false)
     {
         if ($throw) {
-            return $this->stores->where($where)->firstOrFail();
+            return $this->shops->where($where)->firstOrFail();
         }
 
-        return $this->stores->where($where)->first();
+        return $this->shops->where($where)->first();
     }
 
     /**
@@ -148,7 +148,7 @@ class Stores
      */
     public function update($id, $data)
     {
-        $store = $this->stores->find($id);
+        $store = $this->shops->find($id);
 
         if ($store) {
             return $store->update($data);
@@ -165,7 +165,7 @@ class Stores
      */
     public function create($data)
     {
-        return $this->stores->create($data);
+        return $this->shops->create($data);
     }
 
     /**
@@ -182,7 +182,7 @@ class Stores
         //     $relationship->detachAll($id);
         // }
 
-        return $this->stores->destroy($id);
+        return $this->shops->destroy($id);
     }
 
     /**
@@ -194,7 +194,7 @@ class Stores
     protected function validateRelationships($relationships)
     {
         foreach ($relationships as $relationship) {
-            if (! method_exists($this->stores, $relationship)) {
+            if (! method_exists($this->shops, $relationship)) {
                 return false;
             }
         }
