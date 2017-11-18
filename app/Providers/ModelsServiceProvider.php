@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Models\Stores\Stores;
-use App\Models\Stores\StoresEloquent;
+use App\Models\Shops\Shops;
+use App\Models\Shops\ShopsEloquent;
 
 class ModelsServiceProvider extends ServiceProvider
 {
@@ -25,9 +25,9 @@ class ModelsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('App\Models\Stores\Stores', function () {
-            return new Stores(
-                new StoresEloquent
+        $this->app->bind('App\Models\Shops\Shops', function () {
+            return new Shops(
+                new ShopsEloquent
             );
         });
     }
