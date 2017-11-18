@@ -67,7 +67,6 @@ class ShopsController extends Controller
      * Display a listing of the resource with nested relationships.
      *
      * @param string $relationships
-     *
      * @return Response
      */
     public function with($relationships)
@@ -102,7 +101,6 @@ class ShopsController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     *
      * @return Response
      */
     public function show($id)
@@ -122,7 +120,6 @@ class ShopsController extends Controller
      * Update the specified resource in storage.
      *
      * @param int $id
-     *
      * @return Response
      */
     public function update($id)
@@ -134,7 +131,6 @@ class ShopsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     *
      * @return Response
      */
     public function destroy($id)
